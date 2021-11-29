@@ -1,11 +1,6 @@
 package fafij.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +33,9 @@ public class Users {
                 inverseJoinColumns = @JoinColumn(name="id_role")
         )
         private List<Roles> role;
+
+        @OneToMany(mappedBy = "idUser")
+        private List<Invitations> idInvitations;
 
         public Long getId() {
                 return id;
@@ -77,6 +75,14 @@ public class Users {
 
         public void setRole(List<Roles> role) {
                 this.role = role;
+        }
+
+        public List<Invitations> getIdInvitations() {
+                return idInvitations;
+        }
+
+        public void setIdInvitations(List<Invitations> idInvitations) {
+                this.idInvitations = idInvitations;
         }
 
         @Override

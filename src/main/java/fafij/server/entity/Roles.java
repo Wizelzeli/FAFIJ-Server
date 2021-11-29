@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles", schema = "public")
@@ -25,6 +23,9 @@ public class Roles {
 
     @ManyToMany(mappedBy="role")
     private List<Users> user;
+
+    @OneToMany(mappedBy = "idRole")
+    private List<Invitations> idInvitations;
 
     @Column(name = "role_name", length = 15, unique = true, nullable = false)
     private String roleName;
@@ -59,6 +60,14 @@ public class Roles {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public List<Invitations> getIdInvitations() {
+        return idInvitations;
+    }
+
+    public void setIdInvitations(List<Invitations> idInvitations) {
+        this.idInvitations = idInvitations;
     }
 
     @Override

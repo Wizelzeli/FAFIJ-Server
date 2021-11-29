@@ -2,11 +2,9 @@ package fafij.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "note", schema = "public")
@@ -15,10 +13,10 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="date")
+    @Column(name="date", nullable=false)
     private String date;
 
-    @Column(name="sum")
+    @Column(name="sum", nullable=false)
     private Long sum;
 
     @JsonBackReference
@@ -30,7 +28,7 @@ public class Note {
     @JoinColumn(name = "id_jrnl", referencedColumnName = "id")
     private Journal idJournal;
 
-    @Column(name="comment")
+    @Column(name="comment", nullable=false)
     private String comment;
 
     public Long getId() {
